@@ -1,14 +1,40 @@
+<!--
+  **NOTE:** this is a template for index.html,
+  It uses ejs and htemWebpackPlugin to generate a different index.html for each environmet.
+  Webpack will add references to the sripts and styles that it bundles
+  to this file. All references are added dynamicly at build time and include
+  MD5 hashnames for cache busting.
+-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+  <!-- BEGIN TRACKJS -->
+  <script type="text/javascript">
+        window._trackJs = {token: '<%=htmlWebpackPlugin.options.trackJSToken%>' };</script>
+    <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+    <!-- END TRACKJS -->
+    <% } %>
     <meta charset="UTF-8">
 </head>
 
 <body>
-    <h1>Hello World!</h1>
+    <h1>Users</h1>
+    <table>
+        <thead>
+            <th>&nbsp</th>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </thead>
+        <tbody id="users">
 
-    <script src="bundle.js"></script>
+        </tbody>
+    </table>
+    </h1>
+
 </body>
 
 </html>
